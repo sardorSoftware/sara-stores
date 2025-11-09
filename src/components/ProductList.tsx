@@ -12,10 +12,18 @@ export default function ProductList({ category }: ProductListProps) {
   const { products } = useProducts()
   const [visibleProducts, setVisibleProducts] = useState(3)
 
+  if (!products) {
+    return <p>Loading products...</p>
+  }
+
   const filteredByCategory =
     category === "all"
       ? products
       : products.filter((product) => product.category === category)
+
+  if (filteredByCategory.length === 0) {
+    return <p>No products found in this category.</p>
+  }
 
   const displayedProducts = filteredByCategory.slice(0, visibleProducts)
 

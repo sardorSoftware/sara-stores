@@ -1,9 +1,8 @@
-"use client"  // Client component ekanligini aniq belgilaymiz
+"use client"
 
 import Image from "next/image"
 import Link from "next/link"
 import { useProducts, Product } from "@/context/ProductContext"
-import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 interface ProductDetailPageProps {
@@ -14,11 +13,23 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
     const productId = Number(params.id)
     const { products } = useProducts()
     const [product, setProduct] = useState<Product | undefined>(undefined)
+    const [loading, setLoading] = useState(true)
     
     useEffect(() => {
+        if (!products || products.length === 0) {
+            // Mahsulotlar hali yuklanmagan bo‘lsa loading davom etadi
+            setLoading(true)
+            return
+        }
+        
         const found = products.find((p) => p.id === productId)
         setProduct(found)
+        setLoading(false)
     }, [products, productId])
+    
+    if (loading) {
+        return <div className="product-detail">Loading...</div>
+    }
     
     if (!product) {
         return <div className="product-detail">Product not found</div>
@@ -26,7 +37,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
     
     return (
         <div className="product-detail">
-        <Link href="/" className="back-btn">
+        <Link href="/" className="back-btn" aria-label="Back to products">
         Back to products
         </Link>
         
@@ -38,6 +49,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
         width={320}
         height={320}
         className="image"
+        priority={!!product.image}
         />
         </div>
         
