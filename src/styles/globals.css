@@ -1,0 +1,412 @@
+:root {
+  --primary-color: #8e44ad; /* binafsha asosiy rang */
+  --secondary-color: #f9f6ff; /* juda och binafsha fon */
+  --text-color: #2d2d2d;
+  --light-gray: #fdfdfd;
+  --border-color: #e4e4e4;
+  --hover-bg: #ede7f6;
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-hover: rgba(142, 68, 173, 0.1);
+  --btn-hover-bg: #732d91;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  background-color: var(--secondary-color);
+}
+
+/* Layout Containers */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-content {
+  padding: 50px 0;
+}
+
+/* Header */
+.header {
+  background-color: var(--secondary-color);
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px var(--shadow-light);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s;
+}
+
+.logo:hover {
+  color: var(--btn-hover-bg);
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.nav-link:hover {
+  background-color: var(--hover-bg);
+  color: #6c3483;
+}
+
+/* Home Page */
+.home-page {
+  padding: 2rem 1rem;
+  background-color: var(--secondary-color);
+  min-height: 100vh;
+}
+
+.home-page h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.home-page p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: #666;
+  text-align: center;
+}
+
+/* Products Page */
+.products-page h1 {
+  margin-bottom: 30px;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+/* Product List */
+.product-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 1rem;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.15);
+}
+
+/* Product List Grid */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* ----------- Asosiy sahifadagi kartalar (minimalistik) ----------- */
+.product-card {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 2px 6px var(--shadow-light);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  aspect-ratio: 9 / 16;
+  max-width: 280px;
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 24px var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+/* Rasmlar */
+.product-image {
+  flex-grow: 1;
+  background-color: var(--secondary-color);
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 6px var(--shadow-light);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .image {
+  transform: scale(1.05);
+}
+
+/* Ma'lumotlar */
+.product-info {
+  padding: 15px 16px;
+  background-color: white;
+  border-radius: 0 0 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-top: auto;
+}
+
+/* ----------- ID (detail) sahifadagi kartalar ----------- */
+.product-card.detail {
+  justify-self: left;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px var(--shadow-hover);
+  align-items: center;
+  cursor: default;
+  transition: box-shadow 0.3s ease;
+}
+
+.product-card.detail:hover {
+  box-shadow: 0 16px 40px rgba(115, 45, 145, 0.3);
+}
+
+.product-card.detail .product-image {
+  height: 400px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px var(--shadow-hover);
+}
+
+.product-card.detail .image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Ma'lumotlar (detail) */
+.product-card.detail .product-info {
+  padding: 0;
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card.detail .product-name {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.product-card.detail .product-price {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #7f00ff;
+}
+
+.product-description {
+  font-size: 1.15rem;
+  color: #555;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* ----------- Back button minimalistic & transparent ----------- */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent !important; /* Fon shaffof */
+  color: var(--primary-color);
+  font-weight: 600;
+  padding: 0;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  user-select: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.back-btn::before {
+  content: "←";
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.back-btn:hover {
+  color: var(--btn-hover-bg);
+  text-decoration: underline;
+}
+
+/* ----------- Buttons ----------- */
+.btn, .load-more-btn {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.btn:hover, .load-more-btn:hover {
+  background-color: var(--btn-hover-bg);
+  box-shadow: 0 6px 12px rgba(115, 45, 145, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-card.detail {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+
+  .product-card.detail .product-name {
+    font-size: 2rem;
+  }
+
+  .product-card.detail .product-price {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-list {
+    grid-template-columns: 1fr;
+  }
+
+  .header .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+/* Section blocks & arrows for homepage */
+.section-block {
+  margin-bottom: 4rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.arrows {
+  display: flex;
+  gap: 6px;
+}
+
+.arrows span {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+
+.arrows span:hover {
+  transform: translateX(4px);
+}
+
+.footer {
+  justify-self: center;
+}
